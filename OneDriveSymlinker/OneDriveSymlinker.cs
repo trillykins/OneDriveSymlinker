@@ -5,11 +5,12 @@ namespace WinFormsApp1
         private string path = string.Empty;
         private string targetPath = string.Empty;
         private string username = string.Empty;
+        private bool moveSaveFilesToOneDrive = false;
 
         public OneDriveSymlinker()
         {
             InitializeComponent();
-            this.Text = "OneDriveSymlinker";
+            Text = "OneDriveSymlinker";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -63,6 +64,17 @@ namespace WinFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (moveSaveFilesToOneDrive)
+            {
+                // Directory.Move(string, string)
+                // CreateSymbolicLink(string, string)
+                // Verify shit
+            }
+            else
+            {
+                // CreateSymbolicLink(string, string)
+                // Verify shit
+            }
             FileInfo dir = new FileInfo(targetPath);
             path = $"{path}{dir.Name}";
             if (Directory.Exists(path))
@@ -76,6 +88,11 @@ namespace WinFormsApp1
                 throw new Exception("Symlink botched!");
             }
             MessageBox.Show($"Symlink from {targetPath} to {path} successfully created!");
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            moveSaveFilesToOneDrive = checkBox1.Checked;
         }
     }
 }
