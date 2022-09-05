@@ -18,16 +18,6 @@ namespace WinFormsApp1
             targetPath = $"C:\\Users\\{username}\\OneDrive";
             label1.Text = path;
             label2.Text = targetPath;
-
-            //var splat = Directory.CreateSymbolicLink(path, targetPath);
-            //if (splat.Exists)
-            //{
-            //    Console.WriteLine($"{splat.FullName} created!");
-            //}
-            //else
-            //{
-            //    Console.WriteLine($"{splat.FullName} was not created!");
-            //}
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -41,20 +31,25 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            targetPath = DirectoryPicker();
-            label1.Text = targetPath;
+            var result = DirectoryPicker(path);
+            if (string.IsNullOrEmpty(result)) return;
+            path = result;
+            label1.Text = path;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            path = DirectoryPicker();
-            label2.Text = path;
+            var result = DirectoryPicker(targetPath);
+            if (string.IsNullOrEmpty(result)) return;
+            targetPath = result;
+            label2.Text = targetPath;
         }
 
-        private string DirectoryPicker()
+        private string DirectoryPicker(string? initialPath = null)
         {
             using (var fbd = new FolderBrowserDialog())
             {
+                if (initialPath != null) fbd.InitialDirectory = initialPath;
                 DialogResult result = fbd.ShowDialog();
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
@@ -62,7 +57,24 @@ namespace WinFormsApp1
                     return fbd.SelectedPath;
                 }
             }
-            throw new Exception("whatever");
+            return string.Empty;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FileInfo dir = new FileInfo(targetPath);
+            path = $"{path}{dir.Name}";
+            if (Directory.Exists(path))
+            {
+                MessageBox.Show($"Symlink already exists!");
+                return;
+            }
+            var result = Directory.CreateSymbolicLink(path, targetPath);
+            if (!(result.Exists && Directory.GetFiles(result.FullName).Length == Directory.GetFiles(targetPath).Length))
+            {
+                throw new Exception("Symlink botched!");
+            }
+            MessageBox.Show($"Symlink from {targetPath} to {path} successfully created!");
         }
     }
 }
