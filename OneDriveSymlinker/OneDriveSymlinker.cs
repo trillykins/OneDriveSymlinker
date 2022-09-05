@@ -1,14 +1,15 @@
 namespace WinFormsApp1
 {
-    public partial class Form1 : Form
+    public partial class OneDriveSymlinker : Form
     {
-        private string path;
-        private string targetPath;
-        private string username;
+        private string path = string.Empty;
+        private string targetPath = string.Empty;
+        private string username = string.Empty;
 
-        public Form1()
+        public OneDriveSymlinker()
         {
             InitializeComponent();
+            this.Text = "OneDriveSymlinker";
         }
 
         private void Form1_Load(object sender, EventArgs e)
