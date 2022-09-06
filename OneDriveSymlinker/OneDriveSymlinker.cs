@@ -38,7 +38,7 @@ namespace WinFormsApp1
             label2.Text = oneDrivePath;
         }
 
-        private string DirectoryPicker(string? initialPath = null)
+        private static string DirectoryPicker(string? initialPath = null)
         {
             using (var fbd = new FolderBrowserDialog())
             {
