@@ -58,7 +58,7 @@ namespace WinFormsApp1
             if (moveSaveFilesToOneDrive)
             {
                 FileInfo dir = new FileInfo(userPath);
-                oneDrivePath = $"{oneDrivePath}\\{dir.Name}";
+                if (!oneDrivePath.EndsWith(dir.Name)) oneDrivePath = $"{oneDrivePath}\\{dir.Name}";
                 if (!Directory.Exists(userPath))
                 {
                     MessageBox.Show("Save folder not found in user profile path!");
@@ -75,7 +75,7 @@ namespace WinFormsApp1
             else
             {
                 FileInfo dir = new FileInfo(oneDrivePath);
-                userPath = $"{userPath}\\{dir.Name}";
+                if (!userPath.EndsWith(dir.Name)) userPath = $"{userPath}\\{dir.Name}";
                 if (Directory.Exists(userPath))
                 {
                     MessageBox.Show("Save folder already exists in user profile path!");
