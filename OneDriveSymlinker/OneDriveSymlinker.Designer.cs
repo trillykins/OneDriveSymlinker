@@ -55,7 +55,6 @@
             this.label1.Size = new System.Drawing.Size(94, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "User profile path";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -65,7 +64,6 @@
             this.label2.Size = new System.Drawing.Size(83, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "OneDrive path";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button2
             // 
@@ -106,7 +104,6 @@
             this.label3.Size = new System.Drawing.Size(389, 15);
             this.label3.TabIndex = 6;
             this.label3.Text = "This will create symlink from save files already in OneDrive to user profile";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // OneDriveSymlinker
             // 

@@ -22,16 +22,6 @@ namespace WinFormsApp1
             label2.Text = oneDrivePath;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             var result = DirectoryPicker(userPath);
@@ -116,11 +106,6 @@ namespace WinFormsApp1
             {
                 label3.Text = "This will create symlink from save files already in OneDrive to user profile";
             }
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
